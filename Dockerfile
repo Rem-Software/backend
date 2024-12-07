@@ -6,9 +6,9 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm run install --force
+RUN npm install --force
 
-RUN npm run install -g nodemon
+RUN npm install -g nodemon
 
 COPY . .
 
