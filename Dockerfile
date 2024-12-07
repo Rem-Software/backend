@@ -6,6 +6,8 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
+RUN npm install -g npm@10.9.2
+
 RUN npm install --force
 
 RUN npm i -g nodemon
