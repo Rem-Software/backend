@@ -1,11 +1,17 @@
-version: "3.9"
-services:
-  backend:
-    container_name: social-media-backend
-    restart: always
-    build: .
-    ports:
-      - "8080:8080"
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+FROM node:18
+
+RUN mkdir -p /usr/src/app
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 8080
+
+RUN npm run build
+
+CMD ["npm", "run", "start"]
