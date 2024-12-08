@@ -1,17 +1,11 @@
-FROM node:19.5.0-alpine
-
-RUN mkdir -p /usr/src/app
-
-WORKDIR /usr/src/app
-
-COPY package*.json ./
-
-RUN npm install --force
-
-RUN npm install -g nodemon
-
-COPY . .
-
-EXPOSE 8080
-
-CMD ["npm", "run", "start"]
+version: "3.9"
+services:
+  backend:
+    container_name: social-media-backend
+    restart: always
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
